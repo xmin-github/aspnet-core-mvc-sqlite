@@ -1,1 +1,1 @@
-# aspnet-mvc-core-sqlite
+# aspnet-core-mvc-sqlite
