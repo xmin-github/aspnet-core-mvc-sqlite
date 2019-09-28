@@ -1,0 +1,11 @@
+version: "3"
+services:
+  web:
+    build: .
+    image: employeesapi
+    ports:
+      - "9001:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_OktaApiTokenValidation__Authority=<Value>
+      - ASPNETCORE_OktaApiTokenValidation__Audience=api://default

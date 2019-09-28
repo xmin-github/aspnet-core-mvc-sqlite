@@ -1,0 +1,28 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: employeesapi-deployment
+spec:
+  selector:
+    matchLabels:
+      app: employeesapi
+  replicas: 1 # tells deployment to run 1 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: employeesapi
+    spec:
+      containers:
+      - name: employeesapi
+        image: <aws-account-id>.dkr.ecr.us-east-1.amazonaws.com/employeesapi
+        ports:
+        - containerPort: 80
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "Development"
+        - name: ASPNETCORE_OktaApiTokenValidation__Authority
+          value: "Value"
+        - name: ASPNETCORE_OktaApiTokenValidation__Audience
+          value: "api://default"
+      imagePullSecrets:
+      - name: regcred

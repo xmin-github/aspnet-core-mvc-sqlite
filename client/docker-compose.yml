@@ -1,0 +1,15 @@
+version: "3"
+services:
+  web:
+    build: .
+    image: dotnetcoremvcclient
+    ports:
+      - "5000:5000"
+    environment:
+      - ASPNETCORE_Okta__ClientId=<value>
+      - ASPNETCORE_Okta__ClientSecret=<value>
+      - ASPNETCORE_Okta__Domain=<value>
+      - ASPNETCORE_OktaEmployeesApi__ClientId=<value>
+      - ASPNETCORE_OktaEmployeesApi__ClientSecret=<value>
+      - ASPNETCORE_OktaEmployeesApi__TokenUrl=<value>
+      - ASPNETCORE_OktaEmployeesApi__ApiBaseUri=http://192.168.254.24:9001

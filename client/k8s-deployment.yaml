@@ -1,0 +1,36 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: core-mvc-deployment
+spec:
+  selector:
+    matchLabels:
+      app: dotnetcoremvcclient
+  replicas: 1 # tells deployment to run 1 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: dotnetcoremvcclient
+    spec:
+      containers:
+      - name: dotnetcoremvcclient
+        image: <aws-account-id>.dkr.ecr.us-east-1.amazonaws.com/dotnetcoremvcclient
+        ports:
+        - containerPort: 5000
+        env:
+        - name: ASPNETCORE_Okta__ClientId
+          value: "Value"
+        - name: ASPNETCORE_Okta__ClientSecret
+          value: "Value"
+        - name: ASPNETCORE_Okta__Domain
+          value: "Value"
+        - name: ASPNETCORE_OktaEmployeesApi__ClientId
+          value: "Value"
+        - name: ASPNETCORE_OktaEmployeesApi__ClientSecret
+          value: "Value"
+        - name: ASPNETCORE_OktaEmployeesApi__TokenUrl
+          value: "Value"
+        - name: ASPNETCORE_OktaEmployeesApi__ApiBaseUri
+          value: "http://192.168.254.17:30009" #employeesapi endpoint
+      imagePullSecrets:
+      - name: regcred
